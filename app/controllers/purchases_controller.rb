@@ -1,19 +1,25 @@
 class PurchasesController < ApplicationController
 	
 	def buy_product
-		byebug
-		product=Product.find_by(id:params[:id])
-
-		if product.user_id == @current_user.id
-			render json:{message:"this is your product ,you can not buy"}
-		else
-			product.update(status:"sold")
-			@purchase=@current_user.purchases.new(product_id:params[:id])
-			if @purchase.save
-				render json:@purchase ,status: :created
+		if params[:id].present? 
+			product=Product.find_by(id:params[:id])
+			if product.present?
+				if product.user_id == @current_user.id
+					render json:{message:"this is your product ,you can not buy"}
+				else
+					product.update(status:"sold")
+					@purchase=@current_user.purchases.new(product_id:params[:id])
+					if @purchase.save
+						render json:@purchase ,status: :created
+					else
+						render json:{error:@purchase.errors.full_messages},status: :unprocessable_entity
+					end
+				end
 			else
-				render json:{error:@purchase.errors.full_messages},status: :unprocessable_entity
+				render json:{message:"Please give valid Id"}
 			end
+		else
+			render json:{message:"Id can't be blank"}
 		end
 	end
 
@@ -27,13 +33,9 @@ class PurchasesController < ApplicationController
 		 check_data
 	end
 
-	def search_different_user
-		@purchase=Purchase.where(user_id:params[:id])
-		check_data
-	end
 
 	def search_product
-		@purchase=Purchase.where(product_id:params[:id])
+		@purchase=Purchase.where(product_id:params[:id],user_id:@current_user.id)
 		check_data
 	end
 

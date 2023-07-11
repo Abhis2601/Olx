@@ -30,8 +30,6 @@ Rails.application.routes.draw do
 
   get 'purchasing_of_user',to:'purchases#purchasing_current_user'
 
-  get 'purchase_diff_user',to:'purchases#search_different_user'
-
   get 'search_by_product',to:'purchases#search_product'
 
 

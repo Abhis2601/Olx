@@ -6,4 +6,5 @@ class Product < ApplicationRecord
   enum :status,[:available ,:sold]
 
   has_one_attached :image 
+  
 end
