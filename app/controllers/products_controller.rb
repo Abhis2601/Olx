@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
 		product = check_product(params[:id])
 		if product.present?		
 			if	product.update(products_params)
-				render json: { message:'Update Sucessfully.. ', product:product } status: :ok
+				render json: { message:'Update Sucessfully.. ', product:product }, status: :ok
 			else
 				render json: { errors: product.errors.full_messages }, status: :unprocessable_entity
 			end
@@ -39,16 +39,15 @@ class ProductsController < ApplicationController
  
 	def index
 		products =  if params[:name].present?		 
-									Product.available.find_by("name like ?","%#{params[:name]}%")
+									Product.available.where("name like ?","%#{params[:name]}%")
 						    elsif params[:alphanumeric_id].present?
-						    	Product.available.find_by("alphanumeric_id like ?","%#{params[:alphanumeric_id]}%")
+						    	Product.available.where("alphanumeric_id like ?","%#{params[:alphanumeric_id]}%")
 						    elsif params[:category_id].present?
 						  	  Product.joins(:category).available.where(category_id:params[:category_id])
 						    else
 						    	Product.available
 								end	
 		check_render(products)
-
 	end
 
 	def current_user_products
