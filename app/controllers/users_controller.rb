@@ -1,32 +1,27 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate_request ,only:[:create_user]
+   skip_before_action :authenticate_request ,only:[:create]
 	
-	def create_user
-		@user=User.new(params_user)
-		if @user.save
-			render json: @user ,status: :created
-		else
-			render json:{error: @user.errors.full_messages},status: :unprocessable_entity
-		end
+	def create
+	  user = User.new(params_user)
+	  if user.save
+		 token =  jwt_encode(user_id: user.id)
+		 render json: { user: user, token: token }, status: :created
+	  else
+		 render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
+	  end
 	end
 
-	def index
-		@user=User.all
-		render json: @user
-	end
-
-	def update_user
-		@user=User.find_by(id: @current_user)
-		if @user.update(params_user)
- 			render json: @user ,status: :created
+	def update
+		if @current_user.update(params_user)
+ 			render json: { user: @current_user, message: "Update Sucessfully..." }, status: :created
  		else
- 		  render json:{error: @user.errors.full_messages},status: :unprocessable_entity
+ 		  render json:{ errors: @current_user.errors.full_messages }, status: :unprocessable_entity
 		end
 	end
 
 	private
 
 	def params_user
-		params.permit(:first_name,:last_name,:mobile_no,:email,:password)
+		params.permit(:first_name,:last_name,:mobile_no,:email,:password,:profile_picture)
 	end
 end

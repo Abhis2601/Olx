@@ -1,51 +1,48 @@
 class PurchasesController < ApplicationController
 	
-	def buy_product
-		if params[:id].present? 
-			product=Product.find_by(id:params[:id])
-			if product.present?
-				if product.user_id == @current_user.id
-					render json:{message:"this is your product ,you can not buy"}
-				else
-					product.update(status:"sold")
-					@purchase=@current_user.purchases.new(product_id:params[:id])
-					if @purchase.save
-						render json:@purchase ,status: :created
-					else
-						render json:{error:@purchase.errors.full_messages},status: :unprocessable_entity
-					end
-				end
+	def create
+		products = Product.available.where.not(user_id: @current_user.id)
+		product = products.find_by(id:params[:id])
+		if products.present? && product.present?
+			purchase = @current_user.purchases.new(product_id: product.id)
+			if purchase.save
+				product.sold!
+				render json: purchase, status: :created
 			else
-				render json:{message:"Please give valid Id"}
+				render json: { errors: purchase.errors.full_messages }, status: :unprocessable_entity
 			end
 		else
-			render json:{message:"Id can't be blank"}
+			render json: { message:"Product not found" }, status: :not_found
 		end
 	end
 
 	def index
-		@purchase=Purchase.all
-		check_data
+		if params[:product_id].present?
+			purchase = @current_user.purchases.find_by(product_id: params[:product_id])
+			check_render(purchase)
+		else
+			purchases = @current_user.purchases
+			check_render(purchases)
+		end
 	end
 
-	def purchasing_current_user
-		@purchase=Purchase.where(user_id:@current_user.id)
-		 check_data
-	end
-
-
-	def search_product
-		@purchase=Purchase.where(product_id:params[:id],user_id:@current_user.id)
-		check_data
+	def current_user_sold_products
+		products = @current_user.products.sold
+		if products.present?
+			render json: products, status: :ok 
+		else
+			render json:{ message:"No Record found" }, status: :not_found
+		end
 	end
 
 	private
 
-	def check_data
-		if @purchase.present?
-			render json:@purchase ,status: :ok
+	def check_render(purchase)
+		if purchase.present?
+			render json: purchase, status: :ok 
 		else
-			render json:{message:"No purchase"}
+			render json: { message:"No purchase" }, status: :not_found
 		end
 	end
+
 end

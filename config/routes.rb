@@ -3,34 +3,17 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  post'login', to:'authentication#login'
 
-  post 'create', to:'users#create_user'
+  get 'current_user_products', to:'products#current_user_products'
 
-  post  'auth',to:'authentication#login'
-
-  get 'available_products',to:'products#available_product'
-
-  get 'particular',to:'products#particular_product'
-
-  get 'usersproduct',to:'products#users_product'
-
-  get 'alphanumeric',to: 'products#search_alphanumeric'
+  get 'current_user_sold_products', to:'purchases#current_user_sold_products'
   
-  get 'search_by_category',to:'products#search_product_category'
-
-  get 'index',to:'users#index'
+  resource :users
 
   resources :products
 
-  put 'update',to: 'users#update_user'
+  resources :purchases  
 
-  post 'buy',to:'purchases#buy_product'
-
-  get 'purchase_list',to:'purchases#index'
-
-  get 'purchasing_of_user',to:'purchases#purchasing_current_user'
-
-  get 'search_by_product',to:'purchases#search_product'
-
-
+  resources :categories
 end
