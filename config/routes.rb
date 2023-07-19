@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   get 'current_user_sold_products', to:'purchases#current_user_sold_products'
   
+  get 'category_wise', to:'categories#category_wise_product'
+  
   resource :users
 
   resources :products

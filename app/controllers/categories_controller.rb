@@ -5,4 +5,8 @@ class CategoriesController < ApplicationController
 		render json: categories, status: :ok
 	end
 	
+	def category_wise_product
+		categories = Product.where(status:"available").group(:category_id)
+		render json: categories
+	end
 end
