@@ -1,13 +1,8 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-<<<<<<< HEAD
-one:
-<<<<<<< HEAD
-  name: MyString
 
-two:
-  name: MyString
-=======
+one:
+
   category_name: MyString
 
 two:
@@ -22,4 +17,4 @@ one: {}
 #
 two: {}
 # column: value
->>>>>>> addfc9e (21 July modification)
+
