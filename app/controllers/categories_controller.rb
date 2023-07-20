@@ -1,5 +1,5 @@
-class CategoriesController < ApplicationController
 
+class CategoriesController < ApiController 
 	def index 
 		categories = Category.all
 		render json: categories, status: :ok
@@ -9,4 +9,5 @@ class CategoriesController < ApplicationController
 		categories = Product.where(status:"available").group(:category_id)
 		render json: categories
 	end
+
 end

@@ -1,4 +1,6 @@
-class ProductsController < ApplicationController
+
+class ProductsController < ApiController 
+
 	before_action :check_product, only:[:update, :destroy]
 	
 	def create

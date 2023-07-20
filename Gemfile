@@ -26,7 +26,11 @@ gem "stimulus-rails"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
+<<<<<<< HEAD
 
+=======
+gem "active_model_serializers"
+>>>>>>> e3e9c9f (20 July active admin)
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -41,6 +45,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
+<<<<<<< HEAD
 gem "jwt"
 gem "byebug"
 gem "bcrypt", "~> 3.1.7"
@@ -48,6 +53,14 @@ gem 'active_model_serializers'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
+=======
+
+# Use Sass to process CSS
+gem "sassc-rails"
+gem "activeadmin"
+gem "devise"
+gem "jwt"
+>>>>>>> e3e9c9f (20 July active admin)
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"

@@ -1,6 +1,5 @@
-class ApplicationController < ActionController::Base
-
-	include JsonWebToken
+class ApiController < ActionController::Base
+ include JsonWebToken
  before_action :authenticate_request 
 
 
@@ -14,6 +13,5 @@ class ApplicationController < ActionController::Base
 			render json: { error: "unauthorized user" }, status: :unauthorized
 		end
 	end
-
-
 end
+

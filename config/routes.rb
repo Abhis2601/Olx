@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
+=======
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+>>>>>>> e3e9c9f (20 July active admin)
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
   # root "articles#index"
+<<<<<<< HEAD
   post'login', to:'authentication#login'
 
   get 'current_user_products', to:'products#current_user_products'
@@ -18,4 +24,6 @@ Rails.application.routes.draw do
   resources :purchases  
 
   resources :categories
+=======
+>>>>>>> e3e9c9f (20 July active admin)
 end

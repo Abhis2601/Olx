@@ -7,4 +7,8 @@ test:
 production:
   adapter: redis
   url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
+<<<<<<< HEAD
   channel_prefix: checkAuth_production
+=======
+  channel_prefix: Olx_production
+>>>>>>> e3e9c9f (20 July active admin)

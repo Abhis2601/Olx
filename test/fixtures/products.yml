@@ -2,8 +2,22 @@
 
 one:
   name: MyString
+<<<<<<< HEAD
   user: one
 
 two:
   name: MyString
   user: two
+=======
+  description: MyString
+  price: 1
+  user: one
+  product: one
+
+two:
+  name: MyString
+  description: MyString
+  price: 1
+  user: two
+  product: two
+>>>>>>> e3e9c9f (20 July active admin)
