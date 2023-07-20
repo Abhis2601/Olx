@@ -1,6 +1,6 @@
-class UsersController < ApiController 
-	skip_before_action :authenticate_request ,only:[:create]
 
+class UsersController < ApiController
+	skip_before_action :authenticate_request ,only:[:create] 
 	
 	def create
 	  user = User.new(params_user)
@@ -18,6 +18,11 @@ class UsersController < ApiController
  		else
  		  render json:{ errors: @current_user.errors.full_messages }, status: :unprocessable_entity
 		end
+	end
+
+	def index
+		users = User.all
+		render json: users
 	end
 
 	private

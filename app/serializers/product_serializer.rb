@@ -1,10 +1,11 @@
 class ProductSerializer < ActiveModel::Serializer
 
-  attributes :id ,:name,:description,:alphanumeric_id,:price,:image 
-  belongs_to :category
-  belongs_to :user
-  
   def image
     Rails.application.routes.url_helpers.rails_blob_path(object.image, only_path: true) if object.image.attached?
   end
+
+  attributes :id, :name, :description, :price
+  has_one :purchase
+  belongs_to :user
+  belongs_to :category
 end

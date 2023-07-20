@@ -1,4 +1,5 @@
 
+
 class ProductsController < ApiController 
 
 	before_action :check_product, only:[:update, :destroy]
@@ -15,11 +16,12 @@ class ProductsController < ApiController
 	end
 
 	def update
-		if @product.present?		
-			if	@product.update(products_params)
-				render json: { message:'Update Sucessfully.. ', product:@product }, status: :ok
+		product = check_product(params[:id])
+		if product.present?		
+			if	product.update(products_params)
+				render json: { message:'Update Sucessfully.. ', product:product }, status: :ok
 			else
-				render json: { errors: @product.errors.full_messages }, status: :unprocessable_entity
+				render json: { errors: product.errors.full_messages }, status: :unprocessable_entity
 			end
 		else
 			render json: { message:'Please give valid id' }, status: :unprocessable_entity
@@ -27,11 +29,12 @@ class ProductsController < ApiController
 	end
 
   def destroy
-		if @product.present? 
-			if @product.destroy
-  			render json: { product: @product, message:'Delete Sucessfully' }, status: :ok
+  	product = check_product(params[:id])
+		if product.present? 
+			if product.destroy
+  			render json: { product: product, message:'Delete Sucessfully' }, status: :ok
 			else
-				render json: { errors: @product.errors.full_messages }, status: :unprocessable_entity
+				render json: { errors: product.errors.full_messages }, status: :unprocessable_entity
 			end
 		else
 			render json: { message: 'Please give valid id' }, status: :unprocessable_entity
@@ -86,8 +89,8 @@ class ProductsController < ApiController
 	 	return data
 	end
 
+
 	def check_product
 	 @product = @current_user.products.available.find_by(id:params[:id])
 	end
-
 end

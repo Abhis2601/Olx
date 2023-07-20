@@ -1,13 +1,19 @@
 Rails.application.routes.draw do
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 >>>>>>> e3e9c9f (20 July active admin)
+=======
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+>>>>>>> addfc9e (21 July modification)
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
   # root "articles#index"
+<<<<<<< HEAD
 <<<<<<< HEAD
   post'login', to:'authentication#login'
 
@@ -26,4 +32,6 @@ Rails.application.routes.draw do
   resources :categories
 =======
 >>>>>>> e3e9c9f (20 July active admin)
+=======
+>>>>>>> addfc9e (21 July modification)
 end

@@ -1,5 +1,5 @@
-class PurchasesController < ApplicationController
-	
+
+class PurchasesController < ApiController
 	def create
 		products = Product.available.where.not(user_id: @current_user.id)
 		product = products.find_by(id:params[:id])
@@ -44,5 +44,4 @@ class PurchasesController < ApplicationController
 			render json: { message:"No purchase" }, status: :not_found
 		end
 	end
-
 end

@@ -5,7 +5,11 @@ ActiveAdmin.register Purchase do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
+<<<<<<< HEAD
    permit_params :user_id, :product_id
+=======
+  # permit_params :user_id, :product_id
+>>>>>>> addfc9e (21 July modification)
   #
   # or
   #

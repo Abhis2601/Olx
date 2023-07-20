@@ -5,7 +5,11 @@ ActiveAdmin.register Category do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
+<<<<<<< HEAD
   permit_params :category_name
+=======
+  # permit_params :category_name
+>>>>>>> addfc9e (21 July modification)
   #
   # or
   #

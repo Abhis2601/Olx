@@ -10,8 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 
 ActiveRecord::Schema[7.0].define(version: 2023_07_20_081124) do
+=======
+ActiveRecord::Schema[7.0].define(version: 2023_07_20_174654) do
+>>>>>>> addfc9e (21 July modification)
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -36,7 +40,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_20_081124) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+<<<<<<< HEAD
 
+=======
+>>>>>>> addfc9e (21 July modification)
   end
 
   create_table "categories", force: :cascade do |t|
@@ -47,6 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_20_081124) do
 
   create_table "products", force: :cascade do |t|
     t.string "name"
+<<<<<<< HEAD
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -55,6 +63,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_20_081124) do
     t.text "description"
     t.string "status"
     t.integer "category_id"
+=======
+    t.integer "price"
+    t.string "description"
+    t.integer "user_id", null: false
+    t.integer "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+>>>>>>> addfc9e (21 July modification)
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
@@ -70,6 +86,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_20_081124) do
 
   create_table "users", force: :cascade do |t|
     t.string "first_name"
+<<<<<<< HEAD
 
     t.string "last_name"
     t.integer "mobile_no"
@@ -89,6 +106,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_20_081124) do
 
   add_foreign_key "products", "products"
 
+=======
+    t.string "last_name"
+    t.string "email"
+    t.integer "mobile_no"
+    t.string "password"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "products", "categories"
+>>>>>>> addfc9e (21 July modification)
   add_foreign_key "products", "users"
   add_foreign_key "purchases", "products"
   add_foreign_key "purchases", "users"
